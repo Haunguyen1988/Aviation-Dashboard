@@ -46,16 +46,20 @@ const LayoverTrendChart = ({ startDate, endDate }: ChartProps) => {
             {
                 label: 'Domestic',
                 data: data?.data?.domestic || [],
-                borderColor: '#1ABC9C',
-                backgroundColor: 'rgba(26, 188, 156, 0.1)',
-                tension: 0.4
+                borderColor: '#0ea5e9', // Sky
+                backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6,
             },
             {
                 label: 'International',
                 data: data?.data?.international || [],
-                borderColor: '#E67E22',
-                backgroundColor: 'rgba(230, 126, 34, 0.1)',
-                tension: 0.4
+                borderColor: '#14b8a6', // Teal
+                backgroundColor: 'rgba(20, 184, 166, 0.1)',
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6,
             }
         ]
     };
@@ -64,23 +68,26 @@ const LayoverTrendChart = ({ startDate, endDate }: ChartProps) => {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { position: 'top' as const },
-            title: { display: true, text: 'Layover Trend Analysis' }
+            legend: {
+                position: 'top' as const,
+                labels: { color: '#94a3b8', font: { size: 12 } }
+            },
+            title: { display: false }
         },
         scales: {
             y: {
-                grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                ticks: { color: '#ECF0F1' }
+                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                ticks: { color: '#94a3b8' }
             },
             x: {
-                grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                ticks: { color: '#ECF0F1' }
+                grid: { display: false },
+                ticks: { color: '#94a3b8' }
             }
         }
     };
 
     return (
-        <div className="bg-navy rounded-lg p-6 h-80">
+        <div className="h-full w-full min-h-[250px]">
             <Line data={chartData} options={options} />
         </div>
     );

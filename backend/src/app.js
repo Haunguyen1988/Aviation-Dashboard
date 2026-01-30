@@ -15,8 +15,9 @@ app.use(express.json());
 app.use('/api/upload', require('./routes/uploadRoutes'));
 app.use('/api/kpi', require('./routes/kpiRoutes'));
 app.use('/api/charts', require('./routes/chartRoutes'));
+app.use('/api/aims', require('./routes/aimsRoutes'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT} `);
 });

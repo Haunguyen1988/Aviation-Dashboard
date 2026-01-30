@@ -34,4 +34,12 @@ export const chartApi = {
         api.get(`/charts/sectors-trend?start_date=${start}&end_date=${end}`)
 };
 
+// Report APIs
+export const reportApi = {
+    getFlights: (start: string, end: string) =>
+        api.get(`/kpi/flights-list?start_date=${start}&end_date=${end}`),
+    getRoster: (start: string, end: string) =>
+        api.get(`/kpi/roster-list?start_date=${start}&end_date=${end}`)
+};
+
 export default api;

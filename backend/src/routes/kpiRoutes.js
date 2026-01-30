@@ -8,5 +8,8 @@ router.get('/ac-changes', authenticate, kpiController.getACChanges);
 router.get('/block-hours', authenticate, kpiController.getBlockHours);
 router.get('/layovers', authenticate, kpiController.getLayovers);
 router.get('/deadheads', authenticate, kpiController.getDeadheads);
+router.get('/standby-metrics', authenticate, kpiController.getStandbyMetrics);
+router.get('/flights-list', authenticate, kpiController.getFlightsList);
+router.get('/roster-list', authenticate, kpiController.getRosterList);
 
 module.exports = router;

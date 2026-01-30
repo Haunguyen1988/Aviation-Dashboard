@@ -1,32 +1,32 @@
 import { useQuery } from 'react-query';
-import { Plane, TrendingUp } from 'lucide-react';
+import { Clock, TrendingUp } from 'lucide-react';
 import { kpiApi } from '../../services/api';
 
-interface SectorCountWidgetProps {
+interface WidgetProps {
     startDate: string;
     endDate: string;
 }
 
-const SectorCountWidget = ({ startDate, endDate }: SectorCountWidgetProps) => {
+const BlockHoursWidget = ({ startDate, endDate }: WidgetProps) => {
     const { data, isLoading } = useQuery(
-        ['sectors', startDate, endDate],
-        () => kpiApi.getSectorCount(startDate, endDate),
+        ['block-hours', startDate, endDate],
+        () => kpiApi.getBlockHours(startDate, endDate),
         { staleTime: 2 * 60 * 1000 }
     );
 
     if (isLoading) return <div className="animate-pulse h-[140px] bg-slate-800/50 rounded-xl" />;
 
-    const count = data?.data?.data?.count || 0;
-    const trend = +5.2;
+    const hours = data?.data?.data?.block_hours || 0;
+    const trend = +5; // Mocked trend
 
     return (
         <div className="glass-card p-6 flex flex-col justify-between">
             <div className="flex justify-between items-start">
-                <span className="kpi-label">Commercial Sectors</span>
-                <Plane className="text-sky-500" size={20} />
+                <span className="kpi-label">Block Hours</span>
+                <Clock className="text-teal-500" size={20} />
             </div>
             <div className="mt-4">
-                <div className="kpi-value">{count.toLocaleString()}</div>
+                <div className="kpi-value text-teal-400">{hours.toLocaleString()}</div>
                 <div className="text-xs text-slate-400 mt-1 flex items-center gap-1">
                     <TrendingUp className="text-teal-400" size={14} />
                     <span className="text-teal-400 font-medium">{trend}%</span>
@@ -37,4 +37,4 @@ const SectorCountWidget = ({ startDate, endDate }: SectorCountWidgetProps) => {
     );
 };
 
-export default SectorCountWidget;
+export default BlockHoursWidget;

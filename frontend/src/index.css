@@ -3,15 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --navy-dark: #1A252F;
-  --navy: #2C3E50;
-  --teal: #1ABC9C;
-  --orange: #E67E22;
-  --text: #ECF0F1;
+  --navy-dark: #0f172a;
+  --navy: #1e293b;
+  --sky: #0ea5e9;
+  --teal: #14b8a6;
+  --orange: #f97316;
+  --red: #ef4444;
+  --text: #f8fafc;
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(148, 163, 184, 0.1);
 }
 
 body {
   background-color: var(--navy-dark);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(20, 184, 166, 0.1) 0px, transparent 50%);
   color: var(--text);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl shadow-xl transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-sky-500/30 bg-slate-800/70;
+  }
+
+  .kpi-value {
+    @apply text-3xl font-bold tracking-tight text-white;
+  }
+
+  .kpi-label {
+    @apply text-sm font-medium text-slate-400 uppercase tracking-wider;
+  }
 }
