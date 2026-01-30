@@ -1,0 +1,29 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: aviation-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false # User needs to input this in Render dashboard
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false # User needs to input this in Render dashboard
+
+  # Frontend Static Site
+  - type: static
+    name: aviation-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: aviation-backend
+          property: url
